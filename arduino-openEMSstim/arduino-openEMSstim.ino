@@ -44,7 +44,7 @@ EMSChannel emsChannel2(6, 7, A3, &digitalPot, 3);
 EMSSystem emsSystem(2);
 
 void setup() {
-	Serial.begin(19200);
+	Serial.begin(57600);
 	softSerial.setTimeout(100);
 	Serial.setTimeout(50);
 	printer("\nSETUP:");
