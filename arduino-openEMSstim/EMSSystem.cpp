@@ -90,28 +90,27 @@ void EMSSystem::doActionCommand(String *command) {
 				//signaleLength max 5000ms
 				signalLength = 5000;
 			}
-                        if (currentChannel == 2) {  
+			if (currentChannel == 2) {  
 				emsChannels[0]->setSignalLength(signalLength);
 				emsChannels[1]->setSignalLength(signalLength);
-		        }
-                       else {
+			} else {
 				emsChannels[currentChannel]->setSignalLength(signalLength);
-                        }
-                }
+			}
+		}
 
 		// Signal Intensity
 		int seperatorSignalIntensity = command->indexOf(INTENSITY);
 		int signalIntensity = -1;
 		if (seperatorSignalIntensity != -1) {
 			signalIntensity = getNextNumberOfSting(command,
-					seperatorSignalIntensity);
-                        if (currentChannel == 2) {
-                                emsChannels[0]->setIntensity(signalIntensity - 1);
-                                emsChannels[1]->setIntensity(signalIntensity - 1);
-                        }
-                        else {
-                                emsChannels[currentChannel]->setIntensity(signalIntensity - 1);
-                        }       
+			seperatorSignalIntensity);
+			if (currentChannel == 2) {
+					emsChannels[0]->setIntensity(signalIntensity - 1);
+					emsChannels[1]->setIntensity(signalIntensity - 1);
+			}
+			else {
+					emsChannels[currentChannel]->setIntensity(signalIntensity - 1);
+			}	   
 		}
 
 		// Apply the command
@@ -120,16 +119,17 @@ void EMSSystem::doActionCommand(String *command) {
 		if (seperatAction != -1) {
 			action = true;
 		}
-                if (currentChannel == 2) {
+		if (currentChannel == 2) {
 			emsChannels[0]->activate();
 			emsChannels[0]->applySignal();
 			emsChannels[1]->activate();
 			emsChannels[1]->applySignal();
-                }
+		}
 		else if (currentChannel >= 0 && currentChannel < size) {
 			emsChannels[currentChannel]->activate();
 			emsChannels[currentChannel]->applySignal();
-		} else {
+		}
+		else {
 			//deactivate all channels if channelNumber is wrong
 			shutDown();
 		}
